@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chakali Rajesh — Portfolio</title>
+<style>
+  /* ---------- Reset & base ---------- */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,#0f172a 0%, #111827 60%);
+    color:#e6eef8;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- layout ---------- */
+  header{
+    position:fixed;inset:0 0 auto 0;height:72px;background:rgba(8,10,14,0.55);backdrop-filter: blur(6px);
+    display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:1000;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand .logo{
+    width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#fff1 0%,#fff3 50%);
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#cbd5e1;font-size:16px;
+    border:1px solid rgba(255,255,255,0.04)
+  }
+  .brand .name{font-weight:700;color:#e6eef8}
+
+  nav{display:flex;gap:18px;align-items:center}
+  nav a{color:#cbd5e1;padding:8px 10px;border-radius:8px;transition:all .18s ease;font-weight:600}
+  nav a:hover, nav a.active{background:linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));color:#fff}
+
+  /* hamburger (mobile) */
+  .hamburger{display:none;font-size:22px;cursor:pointer;padding:8px;border-radius:8px}
+  @media (max-width:880px){
+    nav{position:fixed;right:16px;top:72px;background:linear-gradient(180deg, rgba(10,12,16,0.96), rgba(10,12,16,0.98));border-radius:10px;padding:12px 16px;flex-direction:column;gap:8px;display:none}
+    nav.open{display:flex}
+    .hamburger{display:block}
+  }
+
+  main{padding-top:92px;max-width:1100px;margin:0 auto}
+  section{padding:72px 20px}
+  .container{padding:0 18px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:78vh;border-radius:18px;margin:24px 16px;padding:48px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    display:flex;gap:36px;align-items:center;
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+    overflow:hidden;
+  }
+  .hero-left{flex:1;min-width:240px}
+  .hero-right{width:320px;display:flex;align-items:center;justify-content:center}
+  .hero h1{font-size:32px;line-height:1.05;color:#f8fafc;margin-bottom:8px}
+  .hero p.lead{color:#cbd5e1;margin-bottom:20px;font-weight:600}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;
+    background:linear-gradient(90deg,#9ca3af 0%, #6b7280 100%);color:#02111b;font-weight:700;
+    box-shadow: 0 6px 18px rgba(11,13,16,0.6);text-decoration:none;
+  }
+  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e6eef8}
+  .profile-card{width:260px;border-radius:16px;padding:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+  .profile-card img{width:100%;border-radius:12px}
+
+  /* ---------- sections ---------- */
+  h2.section-title{font-size:20px;margin-bottom:14px;color:#f8fafc}
+  .about p{color:#cbd5e1;max-width:5000px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:880px){.grid{grid-template-columns:repeat(1,1fr)} .hero{flex-direction:column}.hero-right{width:100%}}
+
+  .skill-pill{display:inline-block;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:999px;color:#e6eef8;margin:6px 6px 6px 0;font-weight:600}
+
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:880px){.project-grid{grid-template-columns:1fr}}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+  @media(max-width:880px){.contact-grid{grid-template-columns:1fr}}
+
+  .socials{display:flex;gap:12px;margin-top:10px}
+
+  /* small helpers */
+  .muted{color:#9fb1c6;font-size:14px}
+  footer{padding:28px 18px;text-align:center;color:#9fb1c6}
+  /* animations */
+  .reveal{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.22,.9,.33,1)}
+  .reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">CR</div>
+    <div class="name">Chakali Rajesh</div>
+  </div>
+
+  <div>
+    <button class="hamburger" aria-label="menu" onclick="toggleNav()">☰</button>
+    <nav id="site-nav">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero container">
+    <div class="hero-left">
+      <h1>Hi — I'm <span style="color:#cbd5e1">Chakali Rajesh</span></h1>
+      <p class="lead">Aspiring Data Scientist · Python Developer · Technology Enthusiast</p>
+      <p class="muted">I build ML & computer vision projects, data visualizations and web apps. Currently looking for entry-level roles and internships.</p>
+      <div style="height:16px"></div>
+      <div class="cta-row">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn secondary" href="./rajesh_s.pdf" download>Download Resume</a>
+      </div>
+      <div style="height:18px"></div>
+      <div class="muted">Available on: <span style="font-weight:700">GitHub</span> · <span style="font-weight:700">LinkedIn</span></div>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-card">
+        <!-- Replace src with your uploaded photo file name -->
+        <img src="./images/Gemini_Generated_Image_hb8xw2hb8xw2hb8x.png" alt="Chakali Rajesh">
+        <div style="padding:12px">
+          <div style="font-weight:700">Chakali Rajesh</div>
+          <div class="muted" style="font-size:13px;margin-top:6px">ECE • Python • Data</div>
+          <div style="height:10px"></div>
+          <div style="display:flex;gap:8px">
+            <a class="btn secondary" href="https://github.com/crajesh14" target="_blank">GitHub</a>
+            <a class="btn secondary" href="https://linkedin.com/in/chakali-rajesh-273ab4273" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about container reveal">
+    <h2 class="section-title">About</h2>
+    <div class="card">
+      <p>
+       I am an Electronics and Communication Engineering graduate from PVKK Institute of Technology, passionate about leveraging technology to solve real-world problems. Skilled in Python, Java Script, C, HTML, CSS, and data scientist tools like Pandas, NumPy, Seaborn and Matplotlib, I enjoy building projects that blend software development with data-driven insights. My academic journey includes hands-on work in machine learning, computer vision, and IoT-based systems, such as a Music Recommendation System using facial emotion detection and an RFID-based Attendance System. With internships in Full Stack Web Development and Java Programming, I bring both technical expertise and strong teamwork skills, eager to contribute to innovative projects in data science, software development, and AI.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container reveal">
+    <h2 class="section-title">Skills</h2>
+    <div class="card">
+      <div style="margin-bottom:12px" class="muted">Languages & Tools</div>
+      <div>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C</span>
+        <span class="skill-pill">Java Script</span>
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">Pandas</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">Matplotlib</span>
+        <span class="skill-pill">Seaborn</span>
+        <span class="skill-pill">Power BI</span>
+        <span class="skill-pill">Tableau</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container reveal">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+      <div class="card">
+        <h3>Music Recommendation System Based On Facial Expression</h3>
+        <p class="muted">Python · OpenCV · Haarcascade · NumPy · Pandas</p>
+        <p>Built a Python-based system that recommends music by analyzing real-time facial expressions.
+
+Utilized Haarcascade algorithms for detecting facial features and emotion recognition.
+
+Mapped detected emotions (e.g., happy, sad, neutral) to specific music genres or tracks.
+
+Developed and tested using OpenCV and integrated with a sample music database.
+
+</p>
+      </div>
+      <div class="card">
+        <h3>RFID Based Attendance System</h3>
+        <p class="muted">Arduino · Python · MySQL</p>
+        <p>Designed and developed an automated attendance tracking system using RFID technology.
+
+Integrated RFID reader and microcontroller to record student attendance in real time.
+
+Implemented data logging and report generation using Python and MySQL.
+
+Enhanced accuracy and reduced manual effort compared to traditional attendance methods.</p>
+      </div>
+      
+      
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container reveal">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="card">
+        <p class="muted">Email</p>
+        <p style="font-weight:700"><a href="mailto:crajeshr14@gmail.com">crajeshr14@gmail.com</a></p>
+        <div style="height:12px"></div>
+        <p class="muted">Phone</p>
+        <p style="font-weight:700">6281068782</p>
+        <div style="height:12px"></div>
+        <div class="muted">Find me</div>
+        <div class="socials">
+          <a class="btn secondary" href="https://github.com/crajesh14" target="_blank">GitHub</a>
+          <a class="btn secondary" href="https://linkedin.com/in/chakali-rajesh-273ab4273" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- simple contact form (mailto fallback) -->
+      <div class="card">
+        <form id="contactForm" onsubmit="sendMail(event)">
+          <label class="muted">Name</label>
+          <input name="name" required style="width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:inherit" />
+          <label class="muted">Email</label>
+          <input name="email" type="email" required style="width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:inherit" />
+          <label class="muted">Message</label>
+          <textarea name="message" rows="4" required style="width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:inherit"></textarea>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+            <button type="submit" class="btn">Send</button>
+            <a class="btn secondary" href="my%20resume.pdf" download>Download CV</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <small>&copy; 2025 Chakali Rajesh — Built with ❤️</small>
+  </footer>
+</main>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, {threshold: 0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // nav active on scroll (scrollspy)
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = Array.from(document.querySelectorAll('section'));
+  function updateActiveNav(){
+    const y = window.scrollY + 120;
+    let current = sections[0];
+    for (const sec of sections){
+      if (sec.offsetTop <= y) current = sec;
+    }
+    navLinks.forEach(a => a.classList.remove('active'));
+    const active = document.querySelector(`nav a[href="#${current.id}"]`);
+    if(active) active.classList.add('active');
+  }
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+
+  // mobile nav toggle
+  function toggleNav(){
+    document.getElementById('site-nav').classList.toggle('open');
+  }
+
+  // contact form: simple mailto fallback
+  function sendMail(e){
+    e.preventDefault();
+    const f = e.target;
+    const name = encodeURIComponent(f.name.value);
+    const email = encodeURIComponent(f.email.value);
+    const msg = encodeURIComponent(f.message.value);
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    // opens user's default mail client
+    window.location.href = `mailto:crajeshr14@gmail.com?subject=${subject}&body=From:%20${name}%20(${email})%0A%0A${msg}`;
+  }
+</script>
+</body>
+</html>  
